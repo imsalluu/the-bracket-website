@@ -31,11 +31,14 @@ const Services = () => {
 
   return (
     <Section id="services" className="py-20 md:py-40">
-      <div className="text-center mb-16 md:mb-24">
-        <h2 className="text-yellow text-[10px] md:text-xs font-black tracking-[0.4em] mb-6 uppercase">Expertise</h2>
-        <h3 className="text-4xl sm:text-5xl md:text-7xl font-black italic leading-none tracking-tight"> 
-          WHAT WE <br /><span className="text-white/20 not-italic">EXCEL AT</span>
-        </h3>
+      <div className="mb-20">
+        <span className="text-yellow text-[10px] font-black uppercase tracking-[0.4em] mb-6 block">
+          Core Expertise
+        </span>
+        <h2 className="text-5xl md:text-8xl font-black tracking-tighter leading-[0.8]">
+          WHAT WE <br />
+          <span className="text-outline">EXCEL AT</span>
+        </h2>
       </div>
 
       <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-10 max-w-7xl mx-auto">

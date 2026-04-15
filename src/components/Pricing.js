@@ -29,11 +29,14 @@ const Pricing = () => {
 
   return (
     <Section id="pricing" className="py-20 md:py-40">
-      <div className="text-center mb-16 md:mb-24">
-        <h2 className="text-yellow text-[10px] md:text-xs font-black tracking-[0.4em] mb-6 uppercase">Investment</h2>
-        <h3 className="text-4xl sm:text-5xl md:text-7xl font-black tracking-tight leading-none">
-          FLEXIBLE <br /><span className="text-white/20 italic">SOLUTIONS</span>
-        </h3>
+      <div className="mb-20">
+        <span className="text-yellow text-[10px] font-black uppercase tracking-[0.4em] mb-6 block">
+          Investment Plans
+        </span>
+        <h2 className="text-5xl md:text-8xl font-black tracking-tighter leading-[0.8]">
+          FLEXIBLE <br />
+          <span className="text-outline">SOLUTIONS</span>
+        </h2>
       </div>
 
       <div className="grid lg:grid-cols-3 gap-8 md:gap-12 max-w-7xl mx-auto items-center">

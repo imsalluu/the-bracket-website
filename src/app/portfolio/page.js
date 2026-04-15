@@ -1,5 +1,5 @@
 import Portfolio from '@/components/Portfolio';
 
-export default function PortfolioPage() {
+export default function Page() {
   return <Portfolio />;
 }

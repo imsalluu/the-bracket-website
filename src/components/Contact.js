@@ -86,14 +86,6 @@ const Contact = () => {
         </motion.form>
       </div>
 
-      <footer className="mt-24 pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-8 text-white/20 text-[10px] font-black uppercase tracking-[0.4em]">
-        <span>© 2026 THE BRACKET.</span>
-        <div className="flex gap-8">
-          <a href="#" className="hover:text-yellow transition-colors">Privacy</a>
-          <a href="#" className="hover:text-yellow transition-colors">Terms</a>
-        </div>
-        <span>BUILT FOR SUCCESS.</span>
-      </footer>
     </Section>
   );
 };

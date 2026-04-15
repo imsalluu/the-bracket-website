@@ -8,6 +8,11 @@
   --secondary: #0a0a0a;
   --accent: #FFD700;
   --font-main: var(--font-poppins), system-ui, sans-serif;
+  
+  /* Premium Tokens */
+  --glass: rgba(255, 255, 255, 0.03);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --glass-blur: 20px;
 }
 
 @theme inline {
@@ -61,18 +66,36 @@ html, body {
     @apply border-2 border-white/10 text-white px-10 py-5 rounded-2xl font-black text-[10px] md:text-xs uppercase tracking-[0.3em] transition-all duration-500 hover:bg-white hover:text-black hover:border-white hover:scale-[1.05] flex items-center justify-center gap-3 cursor-pointer;
   }
 
+  .glass-card {
+    background: var(--glass);
+    backdrop-filter: blur(var(--glass-blur));
+    border: 1px solid var(--glass-border);
+    @apply rounded-3xl;
+  }
+
+  .text-outline {
+    -webkit-text-stroke: 1px rgba(255, 255, 255, 0.2);
+    color: transparent;
+  }
+
   .navbar-blur {
-    @apply bg-black/70 backdrop-blur-3xl border-b border-white/5;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
   }
 }
 
 /* Typography Enhancements */
 h1, h2, h3, h4, h5, h6 {
-  @apply font-black uppercase tracking-tight leading-[0.9] text-white;
+  @apply font-black uppercase tracking-tighter leading-[0.9] text-white;
 }
 
+h1 { @apply text-6xl md:text-9xl; }
+h2 { @apply text-5xl md:text-8xl; }
+h3 { @apply text-3xl md:text-5xl; }
+
 p {
-  @apply leading-relaxed text-white/70;
+  @apply leading-relaxed text-white/50 text-lg;
 }
 
 /* Interactive Utilities */
@@ -84,22 +107,31 @@ p {
   @apply bg-primary;
 }
 
-.italic {
-  font-style: italic;
+/* Custom Cursor Placeholder (Optional Enhancement) */
+.custom-cursor {
+  width: 20px;
+  height: 20px;
+  background: var(--primary);
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  mix-blend-mode: difference;
+  transition: transform 0.1s ease;
 }
 
-/* Animations Overrides */
-.framer-motion-container {
-  will-change: transform, opacity;
+/* Animations */
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
 }
 
-.btn-secondary:hover {
-  background-color: var(--primary);
-  color: black;
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 30s linear infinite;
 }
 
-/* Navbar Blur */
-.navbar-blur {
-  background-color: rgba(0, 0, 0, 0.7);
-  backdrop-filter: blur(10px);
+.animate-marquee:hover {
+  animation-play-state: paused;
 }
