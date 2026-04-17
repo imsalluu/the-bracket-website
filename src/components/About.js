@@ -3,116 +3,146 @@
 import React from 'react';
 import Section from './Section';
 import { motion } from 'framer-motion';
-import { Check } from 'lucide-react';
+import { Check, Star, Zap, Target, Users } from 'lucide-react';
 
 const About = () => {
-  const points = [
-    { title: "Strategic Thinking", desc: "We align every pixel with your long-term business goals." },
-    { title: "Cutting-edge Tech", desc: "Using advanced stacks for peak performance and security." },
-    { title: "User-Centric Design", desc: "Crafting digital experiences that feel human and intuitive." },
-    { title: "Agile Development", desc: "Rapid iterations backed by transparent communications." },
+  const stats = [
+    { label: "Projects Delivered", value: "50+", icon: <Zap size={20} /> },
+    { label: "Industry Awards", value: "12", icon: <Star size={20} /> },
+    { label: "Client Satisfaction", value: "98%", icon: <Users size={20} /> },
+    { label: "Years of Excellence", value: "05+", icon: <Target size={20} /> },
   ];
 
+  const services = [
+    { title: "UI/UX Design", desc: "Crafting intuitive digital journeys." },
+    { title: "Web Engineering", desc: "Scaleable, high-performance web apps." },
+    { title: "AI Integration", desc: "Smart automation for modern businesses." },
+    { title: "Cloud Solutions", desc: "Robust infrastructure for your products." },
+  ];
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: { 
+      opacity: 1,
+      transition: { staggerChildren: 0.2, delayChildren: 0.3 }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } }
+  };
+
   return (
-    <Section id="about" className="py-24 md:py-48 overflow-hidden">
-      <div className="flex flex-col lg:flex-row gap-16 lg:gap-32 items-center">
-        {/* Left Content */}
+    <div className="relative w-full overflow-hidden bg-black text-white flex flex-col items-center">
+      {/* Background Elements */}
+      <div className="absolute inset-0 pointer-events-none z-0">
+        <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-yellow/5 blur-[120px] rounded-full animate-pulse" />
+        <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-yellow/5 blur-[120px] rounded-full animate-pulse" style={{ animationDelay: '2s' }} />
+      </div>
+
+      {/* Hero Section */}
+      <section className="relative z-10 w-full pt-32 pb-20 md:pt-48 md:pb-32 flex flex-col items-center text-center px-6">
         <motion.div 
-          initial={{ opacity: 0, x: -30 }}
-          whileInView={{ opacity: 1, x: 0 }}
+          initial="hidden"
+          whileInView="visible"
           viewport={{ once: true }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          className="lg:w-[55%]"
+          variants={containerVariants}
+          className="max-w-5xl w-full flex flex-col items-center"
         >
-          <div className="flex items-center gap-4 mb-8">
-            <div className="w-12 h-[1px] bg-yellow/30" />
-            <span className="text-yellow text-[10px] font-black uppercase tracking-[0.4em]">
-              Inside The Bracket
-            </span>
+          <motion.div variants={itemVariants} className="flex items-center gap-4 mb-10">
+            <div className="w-10 h-[1px] bg-yellow" />
+            <span className="text-yellow text-[10px] md:text-xs font-black uppercase tracking-[0.5em] leading-none">The Agency</span>
+            <div className="w-10 h-[1px] bg-yellow" />
+          </motion.div>
+
+          <motion.h1 variants={itemVariants} className="mb-12 leading-[0.8] text-[clamp(2.5rem,8vw,8rem)] tracking-tighter uppercase font-black">
+            WE ARCHITECT <br />
+            <span className="text-outline">DIGITAL</span> <br />
+            <span className="text-yellow">DOMINANCE.</span>
+          </motion.h1>
+
+          <motion.p variants={itemVariants} className="text-white/50 text-xl md:text-2xl leading-relaxed max-w-3xl font-light mb-16 px-4">
+            The Bracket is more than just a digital agency; we are architects of the digital frontier. 
+            Born from a passion for precision and a hunger for innovation.
+          </motion.p>
+          
+          <motion.div variants={itemVariants} className="w-full max-w-2xl px-4">
+            <div className="p-8 md:p-12 glass-card bg-white/[0.01] border-white/5 border rounded-[2.5rem] flex flex-col items-center">
+              <span className="text-white/20 text-[10px] font-black uppercase tracking-[0.4em] mb-6">Our Philosophy</span>
+              <h3 className="text-xl md:text-3xl mb-6 italic text-white/90 font-medium normal-case leading-tight">
+                "Precision over approximation, <br className="hidden md:block" /> innovation over imitation."
+              </h3>
+              <p className="text-white/30 text-sm md:text-base leading-relaxed max-w-lg">
+                Every line of code we write and every pixel we place is driven by a singular goal: 
+                to build digital products that don't just work, but inspire.
+              </p>
+            </div>
+          </motion.div>
+        </motion.div>
+      </section>
+
+      {/* Stats Section */}
+      <section className="relative z-10 w-full py-24 bg-white/[0.02] border-y border-white/5 flex flex-col items-center">
+        <div className="max-w-7xl w-full grid grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 px-6">
+          {stats.map((stat, i) => (
+            <motion.div 
+              key={i}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.1, duration: 0.5 }}
+              className="flex flex-col items-center text-center group"
+            >
+              <div className="w-14 h-14 md:w-16 md:h-16 rounded-2xl bg-yellow/10 flex items-center justify-center text-yellow mb-6 group-hover:bg-yellow group-hover:text-black transition-all duration-500 shadow-[0_0_30px_rgba(255,215,0,0.1)]">
+                {stat.icon}
+              </div>
+              <span className="text-5xl md:text-7xl lg:text-8xl font-black text-white group-hover:text-yellow transition-colors duration-500 tracking-tighter">
+                {stat.value}
+              </span>
+              <span className="mt-4 text-[8px] md:text-[10px] font-black uppercase tracking-[0.3em] text-white/20">
+                {stat.label}
+              </span>
+            </motion.div>
+          ))}
+        </div>
+      </section>
+
+      {/* Services Section */}
+      <section className="relative z-10 w-full py-24 md:py-48 flex flex-col items-center px-6">
+        <div className="max-w-6xl w-full flex flex-col items-center text-center">
+          <div className="mb-24 flex flex-col items-center">
+            <span className="text-yellow text-[10px] font-black uppercase tracking-[0.5em] mb-6 block leading-none">Our Expertise</span>
+            <h2 className="text-5xl md:text-8xl mb-8 leading-[0.85] font-black uppercase">WHAT WE <br /> <span className="text-outline">DELIVER</span></h2>
+            <p className="text-white/40 text-lg md:text-xl leading-relaxed max-w-2xl font-medium">
+              We provide a full-spectrum of digital services, ensuring your brand stands out in an ever-evolving landscape.
+            </p>
           </div>
           
-          <h2 className="mb-10 leading-[0.85] text-5xl md:text-8xl tracking-tighter">
-            THE <span className="text-yellow">AGENCY</span> <br /> 
-            <span className="text-outline block my-2">ENGINEERING</span>
-            THE FUTURE OF <br />
-            <span className="relative">
-              DIGITAL
+          <div className="w-full flex flex-wrap justify-center gap-6 md:gap-8">
+            {services.map((service, i) => (
               <motion.div 
-                initial={{ width: 0 }}
-                whileInView={{ width: '100%' }}
+                key={i}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: 0.5, duration: 1 }}
-                className="absolute -bottom-2 left-0 h-1 bg-yellow/20 rounded-full"
-              />
-            </span>
-          </h2>
-          
-          <p className="text-white/50 leading-relaxed max-w-xl mb-12 text-lg font-medium">
-            The Bracket is a forward-thinking digital agency dedicated to bridging the gap between innovative ideas and functional reality. We empower startups and enterprises with smart, scalable digital products.
-          </p>
-          
-          <div className="flex gap-16">
-            {[
-              { label: "Projects Delivered", value: "50+" },
-              { label: "Industry Awards", value: "12" }
-            ].map((stat, i) => (
-              <div key={i} className="group cursor-default">
-                <span className="block text-5xl md:text-6xl font-black mb-2 group-hover:text-yellow transition-colors duration-300">
-                  {stat.value}
-                </span>
-                <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-white/30 group-hover:text-white/60 transition-colors duration-300">
-                  {stat.label}
-                </span>
-              </div>
+                transition={{ delay: i * 0.1, duration: 0.6 }}
+                className="w-full sm:w-[calc(50%-1rem)] lg:w-[calc(25%-1.5rem)] min-w-[280px] p-10 md:p-12 glass-card bg-white/[0.01] border-white/5 hover:border-yellow/20 transition-all duration-500 group relative overflow-hidden flex flex-col items-center rounded-[2.5rem]"
+              >
+                <div className="absolute top-0 right-0 w-32 h-32 bg-yellow/5 rounded-full blur-3xl translate-x-16 -translate-y-16 group-hover:bg-yellow/10 transition-colors" />
+                <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-yellow/20 flex items-center justify-center text-yellow mb-10 group-hover:bg-yellow group-hover:text-black transition-all duration-500">
+                  <Check size={20} strokeWidth={4} />
+                </div>
+                <h4 className="text-xl md:text-2xl font-black mb-6 tracking-tight uppercase text-white/90">{service.title}</h4>
+                <p className="text-white/30 text-sm md:text-base leading-relaxed">
+                  {service.desc}
+                </p>
+              </motion.div>
             ))}
           </div>
-        </motion.div>
-
-        {/* Right Content - Card */}
-        <motion.div 
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="lg:w-[45%] w-full"
-        >
-          <div className="glass-card relative p-8 md:p-14 overflow-hidden border-white/5 bg-white/[0.02]">
-            {/* Subtle Gradient Glow */}
-            <div className="absolute -top-24 -right-24 w-48 h-48 bg-yellow/10 blur-[100px] rounded-full" />
-            
-            <h3 className="text-xl font-black tracking-[0.2em] mb-12 flex items-center gap-4 uppercase">
-              <span className="w-2 h-2 bg-yellow rounded-full animate-pulse" />
-              Why work with us?
-            </h3>
-            
-            <ul className="space-y-10">
-              {points.map((item, i) => (
-                <motion.li 
-                  key={i} 
-                  initial={{ opacity: 0, x: 20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.4 + (i * 0.1) }}
-                  className="flex gap-8 group"
-                >
-                  <div className="w-12 h-12 rounded-2xl bg-white/5 flex items-center justify-center shrink-0 border border-white/10 group-hover:bg-yellow group-hover:border-yellow group-hover:text-black transition-all duration-500 transform group-hover:rotate-6">
-                    <Check size={20} strokeWidth={3} />
-                  </div>
-                  <div className="pt-1">
-                    <h4 className="font-bold text-lg mb-2 tracking-tight group-hover:text-yellow transition-colors">
-                      {item.title}
-                    </h4>
-                    <p className="text-sm text-white/40 leading-relaxed font-medium">
-                      {item.desc}
-                    </p>
-                  </div>
-                </motion.li>
-              ))}
-            </ul>
-          </div>
-        </motion.div>
-      </div>
-    </Section>
+        </div>
+      </section>
+    </div>
   );
 };
 

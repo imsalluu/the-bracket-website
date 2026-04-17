@@ -9,7 +9,7 @@ const Partners = () => {
 
   return (
     <div className="py-20 bg-black border-y border-white/5 overflow-hidden">
-      <div className="container mx-auto px-6 mb-10 text-center">
+      <div className="max-w-7xl mx-auto px-6 mb-10 text-center w-full">
         <span className="text-[10px] font-black uppercase tracking-[0.4em] text-white/20">
           Trusted by Industry Leaders
         </span>
